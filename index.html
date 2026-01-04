@@ -1,23 +1,670 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <!-- Schema.org FAQ 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "이사 비용을 카드로 결제하면 어떤 장점이 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "카드 결제는 현금 지출 부담을 줄이고, 무이자 할부를 통해 비용을 분산할 수 있습니다. 또한, 카드 포인트 적립이나 연말정산 시 현금영수증 처리 등 다양한 혜택을 받을 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "모든 이사업체가 카드 결제를 받나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "아닙니다. 영세한 업체나 개인 용달의 경우 현금 결제를 선호하는 경우가 많으며, 카드 결제 시 수수료를 고객에게 전가하는 경우도 있습니다. 플랫폼을 통해 카드 결제 가능 여부를 사전에 확인하는 것이 중요합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "이사 성수기와 비수기는 언제인가요? 카드 결제 혜택에 차이가 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "통상적으로 3~5월, 9~10월이 성수기이며, 주말과 손 없는 날에 예약이 집중됩니다. 성수기에는 카드 무이자 할부 혜택이 축소되거나 적용되지 않을 수 있습니다. 비수기나 주중에 예약하면 할인율과 카드 혜택 모두 유리합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "카드 결제 시 현금영수증을 받을 수 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "카드 결제는 현금영수증 발급 대상이 아니며, 대신 카드 사용 내역으로 연말정산 시 소득 공제 혜택을 받을 수 있습니다. 현금영수증은 현금 결제 시에만 발급 요청이 가능합니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- 스타일: 부드럽고 다채로운 색, 타이틀 강조, 계층 구조 -->
+  <style>
+    :root {
+      --primary-color: #2A4D69; /* 진한 파란색 계열 */
+      --secondary-color: #4B86B4; /* 청록색 계열 */
+      --accent-color: #ADCBE3; /* 연한 하늘색 계열 */
+      --highlight-color: #E7EFF6; /* 아주 연한 회색/하늘색 */
+      --text-color: #2D3E50; /* 진한 회색 */
+      --bg-light: #F0F4F8; /* 배경색 */
+      --bg-white: #ffffff; /* 흰색 */
+      --btn-color: #FF6F61; /* 버튼 색상: 주황색 */
+      --btn-hover: #FF4F3B; /* 버튼 호버 색상 */
+      --link-color: #007bff; /* 링크 색상 */
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin:0; padding:0;
+      background-color: var(--bg-light);
+      color: var(--text-color);
+      line-height:1.8; /* 가독성을 높이기 위해 1.6에서 1.8로 변경 */
+      word-break: keep-all; /* 한글 텍스트 깨짐 방지 */
+    }
+    .container {
+      max-width: 1100px; /* 최대 너비 확장 */
+      margin:0 auto;
+      padding:0 20px;
+    }
+    header {
+      background-color: var(--primary-color);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--bg-white);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+      font-weight:900; /* 폰트 두께 강조 */
+    }
+    header h1 a {
+      color: var(--bg-white);
+      text-decoration: none;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      color: var(--bg-white);
+      text-align: center;
+      padding: 90px 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      font-weight:900;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .hero p {
+      font-size: 1.4em;
+      margin-bottom: 35px;
+    }
+    .cta-btn {
+      background-color: var(--btn-color);
+      color: var(--bg-white);
+      padding: 18px 45px;
+      font-size:1.3em;
+      font-weight: bold;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .cta-btn:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-3px);
+    }
+    .compare-form-box {
+      background-color: var(--bg-white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-top: 30px;
+      max-width: 600px; /* 폼 너비 조정 */
+      margin-left: auto; margin-right: auto;
+    }
+    .compare-form-box h2 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 25px;
+      font-size:2em;
+    }
+    .compare-form-box p {
+      font-size: 1.1em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .compare-form-box label {
+      display: block;
+      margin-bottom:8px;
+      font-weight:500;
+      color: var(--text-color);
+    }
+    .compare-form-box input, .compare-form-box select {
+      width:100%;
+      padding:12px;
+      margin-bottom:20px;
+      border:1px solid #ddd;
+      border-radius:6px;
+      box-sizing:border-box;
+      font-size:1em;
+    }
+
+    .content-section {
+      padding: 60px 0;
+    }
+    .content-section.bg-white {
+      background-color: var(--bg-white);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border-radius:10px;
+      margin-top: 30px;
+    }
+    .content-section h2 {
+      font-size: 2.8em;
+      color: var(--secondary-color);
+      margin-bottom:30px;
+      font-weight:700;
+      text-align:center;
+    }
+    .content-section h3 {
+      font-size:1.8em; /* 폰트 크기 조정 */
+      color: var(--primary-color);
+      margin-top:30px;
+      margin-bottom:15px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+    .feature-grid {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top:30px;
+    }
+    .feature-grid .item {
+      width: calc(33.33% - 20px);
+      margin:10px;
+      padding:25px;
+      background-color: var(--highlight-color);
+      border-radius:12px;
+      text-align:center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-grid .item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+    .feature-grid .item img {
+      width:80px; height:80px;
+      margin-bottom:15px;
+      background-color: var(--secondary-color);
+      border-radius: 50%;
+      padding: 10px;
+    }
+    .feature-grid .item h3 {
+      font-size: 1.5em;
+      color: var(--text-color);
+      border: none;
+      margin-top: 10px;
+    }
+    .keyword-list {
+      list-style:none;
+      padding:0;
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top:30px;
+    }
+    .keyword-list li {
+      background-color: var(--secondary-color);
+      color: var(--bg-white);
+      padding:10px 20px;
+      margin:5px;
+      border-radius:20px;
+      font-weight:500;
+      font-size: 0.9em;
+    }
+    .faq-item {
+      border-bottom:1px solid #ddd;
+      padding:20px 0;
+    }
+    .faq-item h3 {
+      cursor:pointer;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      font-size:1.4em;
+      color: var(--primary-color);
+      border:none;
+      margin: 0;
+      padding: 0;
+    }
+    .faq-item h3::after {
+      content: '+';
+      font-size:1.5em;
+      color: var(--secondary-color);
+      transition: transform 0.3s;
+    }
+    .faq-item.active h3::after {
+      content: '-';
+      transform: rotate(180deg);
+    }
+    .faq-item p {
+      display: none;
+      padding-top:10px;
+      color:#555;
+      font-size:1.1em;
+      line-height: 1.7;
+    }
+    .faq-item.active p {
+      display: block;
+    }
+
+    /* 표 및 그래프 스타일 */
+    .data-section {
+      padding: 40px 0;
+      background-color: var(--bg-white);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-top: 30px;
+    }
+    .data-section h3 {
+        text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+      font-size: 1em;
+    }
+    th {
+      background-color: var(--highlight-color);
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    .graph-container {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+    .graph-bar {
+      height: 25px;
+      background-color: var(--secondary-color);
+      margin-bottom: 5px;
+      color: var(--bg-white);
+      text-align: left;
+      line-height: 25px;
+      padding-left: 10px;
+      border-radius: 3px;
+      transition: width 1s ease-in-out;
+    }
+
+    /* 이사 비용 상세 정보 */
+    .cost-breakdown {
+        background-color: var(--bg-light);
+        padding: 40px;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+    .cost-breakdown ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    .cost-breakdown li {
+        margin-bottom: 15px;
+        border-left: 4px solid var(--primary-color);
+        padding-left: 15px;
+    }
+    .cost-breakdown li strong {
+        font-size: 1.2em;
+        color: var(--primary-color);
+    }
+
+    /* 외부 링크 섹션 */
+    .external-links ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .external-links li {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+    .external-links a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .external-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* 미디어 쿼리 */
+    @media (max-width:992px) {
+      .feature-grid .item { width: calc(50% - 20px); }
+    }
+    @media (max-width:768px) {
+      .hero h1 { font-size:2.4em; }
+      .hero p { font-size:1.2em; }
+      .cta-btn { padding:15px 30px; font-size:1.1em; }
+      .compare-form-box { padding:25px; }
+      .content-section h2 { font-size:2.2em; }
+      .feature-grid .item { width:100%; margin:10px 0; }
+      .keyword-list li { margin:3px; font-size:0.9em; }
+      .faq-item h3 { font-size:1.2em; }
+      table, th, td { font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">이사 카드 결제, 이제 고민 끝!</a></h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>이사 카드 결제 가능한 업체 2026년 가이드</h1>
+        <p>이사할 때 현금이 없어도 걱정 마세요. 카드 결제, 무이자 할부 혜택으로 스마트하게 이사하세요.</p>
+        <div class="compare-form-box">
+          <h2>이사 견적 & 카드 결제 가능 여부 즉시 확인</h2>
+          <p>간단한 정보 입력으로 여러 업체의 견적을 비교하고 카드 결제 가능 여부까지 한 번에 확인하세요.</p>
+          <form id="quoteForm" action="#" method="post">
+            <label for="moveType">이사 유형 선택</label>
+            <select id="moveType" name="moveType" required>
+                <option value="">-- 이사 유형 선택 --</option>
+                <option value="포장이사">포장이사 (Full Service)</option>
+                <option value="반포장이사">반포장이사 (Semi-Packing)</option>
+                <option value="원룸이사">원룸이사 (Small Scale)</option>
+                <option value="사무실이사">사무실/기업이사 (Office)</option>
+            </select>
+
+            <label for="fromAddr">출발지 주소 (시/군/구)</label>
+            <input type="text" id="fromAddr" name="fromAddr" placeholder="예: 서울특별시 강남구" required>
+
+            <label for="toAddr">도착지 주소 (시/군/구)</label>
+            <input type="text" id="toAddr" name="toAddr" placeholder="예: 경기도 성남시 분당구" required>
+
+            <label for="moveDate">이사 예정일 (2026년 기준)</label>
+            <input type="date" id="moveDate" name="moveDate" placeholder="YYYY-MM-DD" required>
+
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" required>
+
+            <button type="submit" class="cta-btn">무료 견적 & 카드 결제 가능 업체 찾기</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>이사할 때 현금이 필요한 이유와 카드 결제의 장점</h2>
+        <p>이사 비용은 목돈이 들어가기 때문에 카드 결제를 원하는 소비자가 많지만, 많은 이사업체들은 여전히 현금 결제를 선호합니다. 영세한 업체일수록 카드 결제에 따른 수수료를 부담하고 싶지 않기 때문입니다. 하지만 2026년 현재는 스마트폰 기반의 간편결제 시스템과 이사 비교 플랫폼의 등장으로 카드 결제가 가능한 업체가 점차 늘고 있습니다.</p>
+        <div class="feature-grid">
+          <div class="item">
+            <img src="https://via.placeholder.com/80/4B86B4/fff?text=CARD" alt="카드 결제 아이콘">
+            <h3>자유로운 자금 운용</h3>
+            <p>이사 비용을 현금으로 한 번에 지불하는 대신, 카드를 사용하면 목돈 지출을 분산할 수 있습니다. 무이자 할부 혜택을 활용하면 더욱 효율적인 자금 관리가 가능합니다.</p>
+          </div>
+          <div class="item">
+            <img src="https://via.placeholder.com/80/4B86B4/fff?text=BENEFIT" alt="혜택 아이콘">
+            <h3>포인트 및 혜택</h3>
+            <p>카드 결제 시 카드사별 포인트 적립이나 할인 혜택을 받을 수 있습니다. 특히 이사 비용은 금액이 크기 때문에 적립되는 포인트도 상당하여 실질적인 이득을 볼 수 있습니다.</p>
+          </div>
+          <div class="item">
+            <img src="https://via.placeholder.com/80/4B86B4/fff?text=TAX" alt="세금 혜택 아이콘">
+            <h3>소득 공제 (연말정산)</h3>
+            <p>카드 사용액은 연말정산 시 소득 공제 대상이 됩니다. 현금영수증 발행이 어려운 영세업체의 현금 거래보다 카드 사용이 세금 혜택 측면에서 유리합니다.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:50px;">함께 많이 찾는 키워드</h3>
+        <ul class="keyword-list">
+          <li>#이사 카드 결제</li>
+          <li>#이사비용 무이자 할부</li>
+          <li>#포장이사 견적 비교</li>
+          <li>#이사짐센터 가격</li>
+          <li>#원룸이사 카드결제</li>
+          <li>#이사 현금영수증</li>
+          <li>#이삿짐센터 후기</li>
+          <li>#카드 수수료 없는 이사</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+        <div class="container">
+            <h2>2026년 이사 시장 동향과 지역별 이사 비용 특징 분석</h2>
+            <p>2026년 이사 시장은 인구 이동 및 주택 시장 변화에 따라 지속적으로 변동하고 있습니다. 특히 수도권과 지방 광역시의 이사 수요는 꾸준하며, 이사 서비스 품질 및 비용 투명성에 대한 소비자 요구가 높아지고 있습니다. 이로 인해 카드 결제나 플랫폼 기반의 표준화된 서비스가 주목받고 있습니다.</p>
+
+            <h3>전국 주요 지역별 이사 비용 비교 (2026년 기준)</h3>
+            <p>이사 비용은 지역별 생활 물가, 인건비, 업체 경쟁도, 교통 환경 등에 따라 차이가 발생합니다. 2026년 데이터를 기준으로 주요 지역의 이사 비용 특징을 분석해 보았습니다. 서울 및 수도권 지역은 고층 아파트가 많아 사다리차 비용이 중요하며, 지방 광역시에서는 단독주택이나 빌라 이사 시 짐 양에 따른 비용 변동이 큽니다.</p>
+
+            <div class="cost-breakdown">
+                <h4>수도권 주요 도시별 특징</h4>
+                <ul>
+                    <li><strong>서울 (강남, 송파, 서초):</strong> 고가 이사 수요가 많고, 고급 포장 서비스 및 꼼꼼한 정리 정돈을 요구하는 경우가 많습니다. 인건비가 높고, 좁은 골목길이나 주차 공간 부족으로 추가 비용이 발생할 수 있습니다.</li>
+                    <li><strong>경기 (수원, 성남, 용인, 일산):</strong> 신도시 지역의 이사가 활발하며, 아파트 이사 비중이 높습니다. 비교적 젊은 층이 많아 서비스 만족도와 합리적인 비용을 동시에 고려하는 경향이 있습니다.</li>
+                    <li><strong>인천 (송도, 청라):</strong> 신도시와 구도심이 혼재되어 있어 이사 환경이 다양합니다. 해외 이사 수요도 일부 있습니다.</li>
+                </ul>
+                <h4>지방 광역시별 특징</h4>
+                <ul>
+                    <li><strong>부산 (해운대, 수영):</strong> 해안가 지역의 고층 아파트 이사 수요가 높으며, 부산 내 단거리 이사가 활발합니다. 경남 지역 연계 이사도 많습니다.</li>
+                    <li><strong>대구 (수성구, 달서구):</strong> 2020년대 후반부터 신규 주택 공급이 많아지면서 이사 수요가 증가하고 있습니다. 인건비는 수도권 대비 소폭 낮게 형성됩니다.</li>
+                    <li><strong>대전/충청 (세종, 천안):</strong> 행정수도 이전에 따른 유입 인구 증가로 이사 수요가 꾸준합니다. 세종시 아파트 이사는 비교적 규격화되어 있습니다.</li>
+                    <li><strong>광주/전남 (순천, 여수):</strong> 광주 시내 이사가 주를 이루며, 남해안 지역 특성상 이사 날짜가 몰리는 경향이 있습니다.</li>
+                </ul>
+            </div>
+
+            <h3>지역별 이사 수요 현황 (2026년 3월 기준)</h3>
+            <p>아래 표는 2026년 3월 기준 이사 수요를 지역별로 분류한 것입니다. 성수기와 비수기의 수요 변동을 파악하면 이사 비용을 절감하는 데 도움이 됩니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>지역</th>
+                        <th>이사 수요 비중 (%)</th>
+                        <th>평균 이사 비용 변동률 (YoY)</th>
+                        <th>주요 이사 유형</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>서울/수도권</td>
+                        <td>45%</td>
+                        <td>+3%</td>
+                        <td>포장이사, 반포장이사</td>
+                    </tr>
+                    <tr>
+                        <td>부산/경남</td>
+                        <td>15%</td>
+                        <td>+2%</td>
+                        <td>포장이사, 원룸이사</td>
+                    </tr>
+                    <tr>
+                        <td>대구/경북</td>
+                        <td>10%</td>
+                        <td>+1%</td>
+                        <td>반포장이사, 용달이사</td>
+                    </tr>
+                    <tr>
+                        <td>대전/충청</td>
+                        <td>10%</td>
+                        <td>+2%</td>
+                        <td>포장이사, 사무실이사</td>
+                    </tr>
+                    <tr>
+                        <td>광주/전라</td>
+                        <td>8%</td>
+                        <td>+1%</td>
+                        <td>일반이사, 용달이사</td>
+                    </tr>
+                    <tr>
+                        <td>강원/제주</td>
+                        <td>5%</td>
+                        <td>+0.5%</td>
+                        <td>원룸이사, 지방이사</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>이사비용 절약 팁: 현금 없이 카드 결제로도 충분히 할인받는 방법</h2>
+        <p>이사 비용을 절약하는 가장 좋은 방법은 여러 업체를 비교 견적하는 것입니다. 하지만 카드 결제 시에도 비용을 추가로 절약할 수 있는 다양한 방법들이 있습니다.</p>
+
+        <h3>1. 이사 날짜 선정 전략: 성수기 VS 비수기</h3>
+        <p>이사 비용은 날짜에 따라 크게 달라집니다. 특히 3월~5월, 9월~10월의 성수기, 주말, 손 없는 날은 이사 수요가 폭증하여 가격이 20~30% 이상 상승하는 경향이 있습니다. 반면, 비수기의 평일은 가격이 저렴하며, 카드사 무이자 할부 혜택도 더 많이 제공되는 시기입니다.</p>
+
+        <div class="graph-container">
+            <h3>이사 수요 월별 그래프 (2025년 기준)</h3>
+            <div style="margin-bottom:10px;">1월 <span class="graph-bar" style="width: 50%;"></span></div>
+            <div style="margin-bottom:10px;">2월 <span class="graph-bar" style="width: 60%;"></span></div>
+            <div style="margin-bottom:10px;">3월 <span class="graph-bar" style="width: 80%; background-color: #FF6F61;"></span></div>
+            <div style="margin-bottom:10px;">4월 <span class="graph-bar" style="width: 90%; background-color: #FF6F61;"></span></div>
+            <div style="margin-bottom:10px;">5월 <span class="graph-bar" style="width: 85%; background-color: #FF6F61;"></span></div>
+            <div style="margin-bottom:10px;">6월 <span class="graph-bar" style="width: 70%;"></span></div>
+            <div style="margin-bottom:10px;">7월 <span class="graph-bar" style="width: 55%;"></span></div>
+            <div style="margin-bottom:10px;">8월 <span class="graph-bar" style="width: 50%;"></span></div>
+            <div style="margin-bottom:10px;">9월 <span class="graph-bar" style="width: 75%; background-color: #FF6F61;"></span></div>
+            <div style="margin-bottom:10px;">10월 <span class="graph-bar" style="width: 80%; background-color: #FF6F61;"></span></div>
+            <div style="margin-bottom:10px;">11월 <span class="graph-bar" style="width: 65%;"></span></div>
+            <div style="margin-bottom:10px;">12월 <span class="graph-bar" style="width: 50%;"></span></div>
+            <p style="text-align: right; font-size: 0.9em; color: #777;">*성수기: 3월, 4월, 5월, 9월, 10월</p>
+        </div>
+
+        <h3>2. 짐 정리 및 가구 처분</h3>
+        <p>이사 비용의 가장 큰 변수는 짐의 양입니다. 짐이 많아질수록 필요한 인력이 증가하고, 포장재 사용량이 늘어나며, 작업 시간도 길어집니다. 이사 전 불필요한 물건을 과감하게 처분하거나, 당근마켓이나 중고장터를 통해 판매하여 이사 비용을 절감할 수 있습니다.</p>
+        <ul>
+            <li><strong>사전 짐 줄이기:</strong> 안 입는 옷, 안 쓰는 가전제품, 오래된 책 등을 미리 정리합니다.</li>
+            <li><strong>가구 해체/조립 최소화:</strong> 복잡한 붙박이장이나 시스템 가구는 전문가의 추가 비용이 발생합니다.</li>
+        </ul>
+
+        <h3>3. 이사 환경 개선 및 카드사 혜택 활용</h3>
+        <p>엘리베이터 유무, 사다리차 이용 가능 여부, 주차 환경 등 이사 환경에 따라 추가 비용이 발생할 수 있습니다. 엘리베이터가 없는 고층일수록 인력 비용이 증가합니다. 또한, 이사 전에 카드사 홈페이지를 통해 이사 관련 무이자 할부 혜택이나 캐시백 이벤트를 확인하여 결제 계획을 세우는 것이 좋습니다.</p>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+        <div class="container">
+            <h2>이사 유형별 카드 결제 가능 여부 및 특징 (포장이사 vs. 용달이사)</h2>
+            <p>이사 서비스는 크게 포장이사, 반포장이사, 일반이사(용달이사)로 나뉩니다. 각 유형에 따라 서비스 범위와 카드 결제 가능 여부가 달라질 수 있습니다.</p>
+
+            <h3>1. 포장이사 (Full Packing Service)</h3>
+            <p>이사 전문가들이 모든 짐의 포장부터 운반, 배치, 마무리 정리까지 담당하는 서비스입니다. 비용은 가장 높지만, 소비자 만족도가 높습니다. 대형 업체나 플랫폼에 등록된 업체는 대부분 카드 결제 시스템을 갖추고 있어 결제가 용이합니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 편리함, 안전성, 높은 서비스 품질, 카드 결제 용이성.</li>
+                <li><strong>단점:</strong> 상대적으로 높은 비용.</li>
+            </ul>
+
+            <h3>2. 반포장이사 (Semi-Packing Service)</h3>
+            <p>업체에서 짐 포장 및 운반을 담당하고, 짐 정리 및 마무리는 고객이 직접 하는 방식입니다. 포장이사보다 비용이 저렴하며, 어느 정도 짐 정리가 가능한 고객에게 적합합니다. 카드 결제는 포장이사 업체와 마찬가지로 가능한 경우가 많습니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 포장이사보다 저렴한 비용, 짐 정리 주도 가능.</li>
+                <li><strong>단점:</strong> 고객이 짐 정리를 직접 해야 함.</li>
+            </ul>
+
+            <h3>3. 일반이사 및 용달이사 (General/Truck Moving Service)</h3>
+            <p>고객이 모든 짐을 직접 포장하고, 업체는 운반과 최소한의 짐 배치만 담당합니다. 짐의 양이 적거나 단거리 이사 시 주로 이용됩니다. 개인 사업자 형태가 많기 때문에 현금 결제를 선호하는 경우가 대부분이며, 카드 결제가 불가능한 업체가 많습니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 가장 저렴한 비용.</li>
+                <li><strong>단점:</strong> 모든 짐 포장/정리를 직접 해야 함, 카드 결제 어려움.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+        <p>이사 카드 결제와 관련하여 고객들이 가장 궁금해하는 질문들을 모아 답변해 드립니다.</p>
+
+        <div class="faq-item">
+          <h3>이사비용을 카드로 결제하면 수수료가 추가되나요?</h3>
+          <p>법적으로 부당한 추가 수수료 요구는 불법이지만, 일부 영세 업체들은 카드 수수료를 고객에게 전가하려는 경우가 있습니다. 이사 계약 전에 카드 결제 가능 여부와 추가 수수료 발생 여부를 반드시 확인해야 합니다. 플랫폼을 통해 진행하면 수수료 없이 카드 결제가 가능한 업체를 찾을 수 있습니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>이사 당일, 현장 추가 비용이 발생하면 카드 결제가 가능한가요?</h3>
+          <p>이사 당일, 예상치 못한 짐 증가나 이사 환경 변화로 인해 현장 추가 비용이 발생할 수 있습니다. 이때도 원칙적으로는 카드 결제가 가능해야 합니다. 하지만 업체에 따라 현장 추가금은 현금 결제를 유도하는 경우가 많으므로, 계약 시 추가 비용 발생 시의 결제 방식까지 명확히 해두는 것이 좋습니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>포장이사를 할 때 팁(봉사료)을 드려야 하나요?</h3>
+          <p>이사 업체에 따라 다르지만, 팁은 의무 사항이 아닙니다. 이사 서비스의 대가는 이미 계약 금액에 포함되어 있습니다. 서비스에 만족했을 경우 감사의 표시로 소액의 팁을 전달하는 것은 자유이나, 강요받을 필요는 없습니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>이사 중 파손이나 분실이 발생하면 어떻게 해야 하나요?</h3>
+          <p>포장이사 업체는 「화물자동차 운수사업법」에 따라 적재물배상보험에 의무적으로 가입하게 되어 있습니다. 파손이나 분실 발생 시 즉시 현장 책임자에게 알리고, 사진이나 영상으로 증거를 남겨야 합니다. 계약서에 명시된 보상 규정에 따라 보상을 받을 수 있습니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>2026년 이사철, 이사 예약은 언제 하는 것이 가장 좋을까요?</h3>
+          <p>이사 성수기(3~5월, 9~10월)에는 최소 1~2개월 전에 예약해야 원하는 날짜와 시간을 확보할 수 있습니다. 특히 손 없는 날 이사를 원한다면 2~3개월 전 예약이 필수입니다. 비수기 이사를 하더라도 최소 2주 전에는 예약하는 것이 좋습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section bg-white">
+      <div class="container">
+        <h2>신뢰할 수 있는 외부 자료 및 참고 링크</h2>
+        <p>이사 서비스 관련 법률 및 소비자 보호 정보를 확인할 수 있는 신뢰할 수 있는 외부 사이트입니다.</p>
+        <div class="external-links">
+          <ul>
+            <li><a href="https://www.law.go.kr/%EB%B2%95%EB%A0%B9%EC%A0%95%EB%B3%B4/%ED%99%94%EB%AC%BC%EC%9E%90%EB%8F%99%EC%B0%A8%20%EC%9A%B4%EC%88%98%EC%82%AC%EC%97%85%EB%B2%95" target="_blank" rel="noopener">법제처: 화물자동차 운수사업법 (적재물 배상보험 의무 가입 근거)</a></li>
+            <li><a href="https://www.kca.go.kr/index.do" target="_blank" rel="noopener">한국소비자원: 소비자 피해 구제 제도 (이사 서비스 관련 분쟁 해결)</a></li>
+            <li><a href="https://www.nts.go.kr/nts/main.do" target="_blank" rel="noopener">국세청: 현금영수증 및 부가가치세법 관련 정보</a></li>
+            <li><a href="https://www.e-cheil.com/news/articleView.html?idxno=245041" target="_blank" rel="noopener">이사 비용 카드결제 관련 보도자료 (뉴스 기사)</a></li>
+            <li><a href="https://ko.wikipedia.org/wiki/%EC%9D%B4%EC%82%AC" target="_blank" rel="noopener">이사 - 위키백과</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>이사 비용 카드결제 비교 플랫폼</strong> &copy; 2026 All Rights Reserved.</p>
+      <p>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">이용약관</a>
+        <a href="#">문의하기</a>
+      </p>
+      <p>본 사이트는 전국 이삿짐센터의 카드 결제 가능 여부 및 견적 비교 정보를 제공하며, 실제 계약은 고객과 선택하신 업체가 직접 체결합니다.</p>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ 토글 기능
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+      item.addEventListener('click', event => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+    // Form validation and processing (dummy for demonstration)
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('무료 견적 요청이 접수되었습니다. 곧 카드 결제가 가능한 업체 리스트를 안내해 드릴 예정입니다.');
+        // 실제 서버 전송 로직 구현
+    });
+  </script>
+
+
+  
